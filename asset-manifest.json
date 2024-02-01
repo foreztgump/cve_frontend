@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/cve_frontend/static/css/main.129b9f8a.css",
+    "main.js": "/cve_frontend/static/js/main.68bf19cd.js",
+    "index.html": "/cve_frontend/index.html",
+    "main.129b9f8a.css.map": "/cve_frontend/static/css/main.129b9f8a.css.map",
+    "main.68bf19cd.js.map": "/cve_frontend/static/js/main.68bf19cd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.129b9f8a.css",
+    "static/js/main.68bf19cd.js"
+  ]
+}
