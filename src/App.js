@@ -10,10 +10,30 @@ import {
 import "./App.css";
 import { instantMeiliSearch } from "@meilisearch/instant-meilisearch";
 
-const searchClient = instantMeiliSearch(
-  "http://137.184.44.57",
-  ""
-);
+
+const { searchClient, setMeiliSearchParams } = instantMeiliSearch(
+  'https://cve.teecybervault.com/', // Host
+  '531c533fe69dd6af154008aa1d62a1f19df34233c21bbff168a26a130e6dab16', // API key
+  {
+    placeholderSearch: true, // default: true.
+    primaryKey: 'id', // default: undefined
+    // ...
+  },
+  {
+    setMeiliSearchParams: {
+      hybrid: {
+        "semanticRatio": 0.7,
+        "embedder": "default"
+      }, 
+    },
+  },
+)
+setMeiliSearchParams({
+  hybrid: {
+    "semanticRatio": 0.6,
+    "embedder": "default"
+  }
+})
 
 
 const App = () => (
@@ -27,39 +47,46 @@ const App = () => (
         <Stats />
       </div>
       
-      <SearchBox />
+      <SearchBox autoFocus />
       <InfiniteHits hitComponent={Hit} />
     </InstantSearch>
   </div>
 );
 
 const Hit = ({ hit }) => {
-  const metadata = JSON.parse(hit.metadata.text);
-  const pocLinks = metadata.poc.split(',').map((link) => link.trim());
-
   return (
     <article key={hit.id} className="hit-card">
-            <h2 className="hit-name">
+      <h2 className="hit-name">
         <Highlight attribute="id" hit={hit} />
       </h2>
-      <p className="hit-description">
-        <strong>Description:</strong> {metadata.description}
-      </p>
       <p className="hit-product">
-        <strong>Product:</strong> {metadata.product}
+        <strong>Product:</strong> {hit.product}
+      </p>
+      <p className="hit-description">
+        <strong>Description:</strong> {hit.description}
       </p>
       <p className="hit-version">
-        <strong>Version:</strong> {metadata.version}
+        <strong>Version:</strong> {hit.version}
       </p>
       <p className="hit-vulnerability">
-        <strong>Vulnerability:</strong> {metadata.vulnerability}
+        <strong>Vulnerability:</strong> {hit.vulnerability}
       </p>
       <div className="hit-poc">
         <strong>Proof of Concept:</strong>
         <ul>
-          {pocLinks.map((link, index) => (
-            <li key={index}>
-              <a href={link}>{link}</a>
+          {hit.poc.reference.map((link, index) => (
+            <li key={`reference-${index}`}>
+              {link.startsWith('http') ? <a href={link}>{link}</a> : link}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="hit-github">
+        <strong>GitHub:</strong>
+        <ul>
+          {hit.poc.github.map((link, index) => (
+            <li key={`github-${index}`}>
+              {link.startsWith('http') ? <a href={link}>{link}</a> : link}
             </li>
           ))}
         </ul>
