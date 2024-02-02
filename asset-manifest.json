@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/cve_search/static/css/main.129b9f8a.css",
-    "main.js": "/cve_search/static/js/main.68bf19cd.js",
+    "main.js": "/cve_search/static/js/main.883a9386.js",
     "index.html": "/cve_search/index.html",
     "main.129b9f8a.css.map": "/cve_search/static/css/main.129b9f8a.css.map",
-    "main.68bf19cd.js.map": "/cve_search/static/js/main.68bf19cd.js.map"
+    "main.883a9386.js.map": "/cve_search/static/js/main.883a9386.js.map"
   },
   "entrypoints": [
     "static/css/main.129b9f8a.css",
-    "static/js/main.68bf19cd.js"
+    "static/js/main.883a9386.js"
   ]
 }
