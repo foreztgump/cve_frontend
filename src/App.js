@@ -40,6 +40,11 @@ const App = () => (
   <div className="ais-InstantSearch">
     <div className="title-container">
       <h1>CVE Search</h1>
+      <small>
+      Acknowledgements: This project is made possible thanks to 
+      <a href="https://github.com/meilisearch/meilisearch"> MeiliSearch</a> and 
+      <a href="https://github.com/trickest/cve"> Trickest CVE</a>.
+      </small>
       </div>
     
     <InstantSearch indexName="cve" searchClient={searchClient}>
